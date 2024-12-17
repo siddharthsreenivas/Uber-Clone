@@ -24,10 +24,10 @@ The request body should be in JSON format and includes the following fields:
 
 - `user` (object):
     - `fullname` (object):
-        - `firstname` (string): User's first name (minimum 3 characters).
-        - `lastname` (string): User's last name (minimum 3 characters).
-    - `email` (string): User's email address (must be a valid email).
-    - `password` (string): User's password (minimum 6 characters).
+        - `firstname` (string): User's first name
+        - `lastname` (string): User's last name
+    - `email` (string): User's email address 
+    - `password` (string): User's password
 - `token` (string): JWT token
 
 ## `/users/login` Endpoint
@@ -51,10 +51,10 @@ The request body should be in JSON format and includes the following fields:
 
 - `user` (object):
     - `fullname` (object):
-        - `firstname` (string): User's first name (minimum 3 characters).
-        - `lastname` (string): User's last name (minimum 3 characters).
-    - `email` (string): User's email address (must be a valid email).
-    - `password` (string): User's password (minimum 6 characters).
+        - `firstname` (string): User's first name 
+        - `lastname` (string): User's last name 
+    - `email` (string): User's email address 
+    - `password` (string): User's password
 - `token` (string): JWT token
 
 ## `/users/profile` Endpoint
@@ -76,9 +76,9 @@ Requires a valid JWT token in the Authorization header or in the cookies
 ### Example Response
 
 - `fullname` (object):
-    - `firstname` (string): User's first name (minimum 3 characters).
-    - `lastname` (string): User's last name (minimum 3 characters).
-- `email` (string): User's email address (must be a valid email).
+    - `firstname` (string): User's first name 
+    - `lastname` (string): User's last name 
+- `email` (string): User's email address 
 
 ## `/users/logout` Endpoint
 
@@ -134,4 +134,83 @@ The request body should be in JSON format and includes the following fields:
         - `plate` (string): Vehicle plate number
         - `capacity` (number): Vehicle passenger capacity 
         - `vehicleType` (string): Type of vehicle
+    - `status` (string): status of the captain
 - `token` (string): JWT token
+
+## `/captains/login` Endpoint
+
+### Description
+
+Authenticates a captain using their email and password, returning a JWT token upon success.
+
+### HTTP Method
+
+`POST`
+
+### Request Body
+
+The request body should be in JSON format and includes the following fields:
+
+- `email` (string, required): User's email address (must be a valid email).
+- `password` (string, required): User's password (minimum 6 characters).
+
+### Example Response
+
+- `captain` (object):
+    - `fullname` (object):
+        - `firstname` (string): User's first name 
+        - `lastname` (string): User's last name 
+    - `email` (string): User's email address 
+    - `password` (string): User's password
+    - `vehicle` (object):
+        - `color` (string): Vehicle color
+        - `plate` (string): Vehicle plate number
+        - `capacity` (number): Vehicle passenger capacity 
+        - `vehicleType` (string): Type of vehicle
+    - `status` (string): status of the captain
+- `token` (string): JWT token
+
+## `/captains/profile` Endpoint
+
+### Description
+
+Retrieves the profile information of the currently authenticated captain.
+
+### HTTP Method
+
+`GET`
+
+### Authentication
+
+Requires a valid JWT token in the Authorization header or in the cookies
+
+`Authorization: Bearer <token>`
+
+### Example Response
+
+- `fullname` (object):
+    - `firstname` (string): User's first name 
+    - `lastname` (string): User's last name 
+- `email` (string): User's email address
+- `vehicle` (object):
+    - `color` (string): Vehicle color
+    - `plate` (string): Vehicle plate number
+    - `capacity` (number): Vehicle passenger capacity 
+    - `vehicleType` (string): Type of vehicle
+- `status` (string): status of the captain
+
+## `/captains/logout` Endpoint
+
+### Description
+
+Logouts the current captain and blacklist the token provided in the headers or cookies.
+
+### HTTP Method
+
+`GET`
+
+### Authentication
+
+Requires a valid JWT token in the Authorization header or in the cookies
+
+`Authorization: Bearer <token>`
