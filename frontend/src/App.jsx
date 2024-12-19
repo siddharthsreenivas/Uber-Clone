@@ -7,6 +7,7 @@ import CaptainSignup from './pages/CaptainSignup'
 import {Route, Routes} from 'react-router-dom'
 
 const App = () => {
+
   return (
     <div>
       <Routes>
